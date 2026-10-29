@@ -39,26 +39,7 @@ Existe un modelo desacoplado de cadena de suministro (SaaS Multicapa) que es el 
 
 ## DIAGRAMA DE FLUJO DE DATOS DEL SISTEMA
 
-```mermaid
-flowchart LR
-    subgraph Origen [ORIGEN: CLÍNICA (CHILE)]
-        P[Paciente / WhatsApp Business] -->|Solicitud de cita / Síntomas| C[Agente Front]
-        M[Personal Clínico] -.->|Control de Acceso Operacional| C
-    end
-
-    subgraph Intermediario [INTERMEDIARIO: AGENCIA LOCAL MARCA BLANCA (CHILE)]
-        C -->|Expatriación de Datos vía APIs| B[Transferencia y Gestión de Datos]
-        B -.->|Riesgo R05: Vendor Lock-in| B
-    end
-
-    subgraph Destino [DESTINO Y PROCESAMIENTO: SERVIDORES CLOUD (EE. UU.)]
-        B -->|Expatriación de Datos Sensibles - Violación Ley 19.628| S[(Almacenamiento de Datos en Nube EE. UU.)]
-        S -->|Payload con RUT y Salud| LLM[Inferencia de IA - APIs Cloud EE. UU.]
-        LLM -->|Respuesta Autónoma y Agendamiento| S
-    end
-
-    S -.->|Riesgo Crítico R01: Infracción Gravísima Ley 19.628| Origen
-```
+![Diagrama de Flujo de Datos del Sistema](assets/diagrama-flujo.jpg)
 
 *Diagrama que ilustra la expatriación transfronteriza de datos de salud (RUT, Síntomas) de pacientes hacia servidores extranjeros, representando una infracción regulatoria de máxima severidad[cite: 3].*
 
